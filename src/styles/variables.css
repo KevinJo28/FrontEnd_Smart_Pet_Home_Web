@@ -1,0 +1,74 @@
+/* Smart Pet Home — Design Tokens */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  /* Brand Colors */
+  --color-blue-dark:    #1F4E79;
+  --color-blue-mid:     #2E86AB;
+  --color-blue-light:   #4FC3F7;
+  --color-orange:       #F57C00;
+  --color-orange-light: #FFB74D;
+  --color-gold:         #F2C94C;
+  --color-gold-mid:     #E0A106;
+  --color-beige:        #F5E6CA;
+  --color-white:        #FFFFFF;
+  --color-gray-light:   #F2F2F2;
+  --color-gray-mid:     #9E9E9E;
+  --color-gray-dark:    #333333;
+
+  /* Semantic */
+  --bg-primary:    var(--color-white);
+  --bg-secondary:  var(--color-gray-light);
+  --text-primary:  var(--color-gray-dark);
+  --text-muted:    var(--color-gray-mid);
+  --accent:        var(--color-orange);
+  --accent-hover:  var(--color-orange-light);
+  --nav-bg:        var(--color-blue-dark);
+  --btn-primary:   var(--color-blue-mid);
+  --btn-primary-hover: #256f90;
+
+  /* Typography */
+  --font-display: 'Nunito', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Radius & Shadows */
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 8px rgba(31,78,121,0.08);
+  --shadow-md: 0 6px 24px rgba(31,78,121,0.14);
+  --shadow-lg: 0 16px 48px rgba(31,78,121,0.18);
+
+  /* Transitions */
+  --transition: 0.2s ease;
+}
+
+/* Dark mode variant */
+[data-theme="dark"] {
+  --bg-primary:   #1a2a3a;
+  --bg-secondary: var(--color-blue-dark);
+  --text-primary: var(--color-white);
+  --text-muted:   var(--color-blue-light);
+  --nav-bg:       #111e2b;
+}
+
+/* Reset & base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+button { cursor: pointer; font-family: var(--font-body); }
+input  { font-family: var(--font-body); }
