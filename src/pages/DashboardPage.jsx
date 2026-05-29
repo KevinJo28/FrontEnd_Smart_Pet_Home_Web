@@ -1,5 +1,9 @@
 import { useAuth } from "../hooks/useAuth";
 import styles from "./DashboardPage.module.css";
+import Food from "../assets/pet-food.png";
+import Rewards from "../assets/reward.png";
+import Water from "../assets/dispenser.png";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,12 +15,14 @@ const STATS = [
 ];
 
 const DEVICES = [
-  { name: "Alimentación", breed: "Golden Retriever", age: "3 años", status: "En uso", emoji: "🥩" },
-  { name: "Agua",  breed: "Labrador",  age: "1 año",  status: "En uso", emoji: "💧" },
+  { name: "Alimentación", breed: "Golden Retriever", age: "3 años", status: "En uso", emoji: Food },
+  { name: "Agua",  breed: "Labrador",  age: "1 año",  status: "En uso", emoji: Water },
+  { name: "Recompensas",  breed: "Labrador",  age: "1 año",  status: "En uso", emoji: Rewards},
 ];
 
 export default function DashboardPage() {
   const { user } = useAuth();
+    const navigate = useNavigate();
 
   return (
     <div className={styles.root}>
@@ -56,13 +62,13 @@ export default function DashboardPage() {
           <div className={styles.petsGrid}>
             {DEVICES.map((pet) => (
               <div key={pet.name} className={styles.petCard}>
-                <div className={styles.petEmoji}>{pet.emoji}</div>
+                <div className={styles.petEmoji}><img src={pet.emoji} alt="" /></div>
                 <div className={styles.petInfo}>
                   <h3 className={styles.petName}>{pet.name}</h3>
                   <p className={styles.petBreed}>{pet.breed} · {pet.age}</p>
                   <span className={styles.petBadge}>{pet.status}</span>
                 </div>
-                <button className={styles.petBtn}>Ver perfil →</button>
+                <button className={styles.petBtn} onClick={() => {navigate("/" + pet.name)}}>Ver dispositivo →</button>
               </div>
             ))}
           </div>

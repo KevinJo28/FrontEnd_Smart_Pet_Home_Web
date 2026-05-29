@@ -142,7 +142,7 @@
 
 }
 .petCard:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(31,78,121,0.12); }
-.petEmoji { font-size: 2.6rem; }
+.petEmoji img { width: 100px; }
 .petInfo { flex: 1; }
 .petName {
   font-family: 'Nunito', sans-serif;

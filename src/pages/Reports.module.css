@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  min-height: 100vh;
+  background: #f2f6fb;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.main {
+  flex: 1;
+  padding: 36px 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: fadeIn 0.4s ease both;
+}

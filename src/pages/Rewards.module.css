@@ -1,0 +1,350 @@
+/* PremiosPage.module.css */
+
+.root {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: 'DM Sans', sans-serif;
+  animation: fadeIn 0.35s ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.breadcrumb { font-size: 0.8rem; color: #9E9E9E; margin-bottom: 4px; }
+.title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #1F4E79;
+}
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(31,78,121,0.08);
+}
+.badgeDot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ── Grid layout ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.colLeft, .colRight { display: flex; flex-direction: column; gap: 20px; }
+
+/* ── Card ── */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 26px;
+  box-shadow: 0 2px 12px rgba(31,78,121,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cardTitle {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1F4E79;
+}
+.cardTitleRow { display: flex; align-items: center; justify-content: space-between; }
+.cardSub { font-size: 0.83rem; color: #9E9E9E; margin-top: -10px; line-height: 1.5; }
+
+.editBtn {
+  background: #f0f7fb;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2E86AB;
+  transition: background 0.15s;
+}
+.editBtn:hover { background: #d0eaf5; }
+
+/* ── Uso bar ── */
+.usoBar { display: flex; flex-direction: column; gap: 8px; }
+.usoInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #9E9E9E;
+}
+.usoInfo strong { color: #1F4E79; font-weight: 700; }
+.barTrack {
+  height: 8px;
+  background: #f0f4f8;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, #2E86AB, #4FC3F7);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* ── Resultado banner ── */
+.resultadoBanner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #e6f9f0, #f0fff8);
+  border: 1.5px solid #a8e6c8;
+  border-radius: 14px;
+  padding: 14px 18px;
+  animation: popIn 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.resultadoEmoji { font-size: 2.2rem; }
+.resultadoLabel { font-size: 0.75rem; color: #1a9e5e; font-weight: 600; text-transform: uppercase; }
+.resultadoNombre { font-family: 'Nunito', sans-serif; font-weight: 800; color: #1F4E79; font-size: 1rem; }
+
+/* ── Botón soltar ── */
+.btnSoltar {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #F57C00, #FFB74D);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 20px rgba(245,124,0,0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 54px;
+}
+.btnSoltar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(245,124,0,0.38);
+}
+.btnSoltar:active:not(:disabled) { transform: translateY(0); }
+.btnDisabled {
+  background: #e0e0e0 !important;
+  color: #9E9E9E !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 22px; height: 22px;
+  border: 3px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Toggle azar ── */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+  border-top: 1px solid #f0f4f8;
+}
+.toggleLabel { font-weight: 700; font-size: 0.9rem; color: #1F4E79; }
+.toggleSub   { font-size: 0.77rem; color: #9E9E9E; margin-top: 2px; }
+
+.toggle {
+  width: 48px; height: 26px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 99px;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.toggleOn { background: #F57C00; }
+.toggleThumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.toggleOn .toggleThumb { transform: translateX(22px); }
+
+/* ── Límite diario ── */
+.limiteDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.limiteNum {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #1F4E79;
+  line-height: 1;
+}
+.limiteText { font-size: 0.9rem; color: #9E9E9E; }
+.limiteRestante { font-size: 0.82rem; color: #2E86AB; font-weight: 600; }
+
+.limiteEdit { display: flex; flex-direction: column; gap: 12px; }
+.limiteDesc { font-size: 0.85rem; color: #9E9E9E; }
+.limiteControls { display: flex; align-items: center; gap: 16px; }
+.limiteBtn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 2px solid #2E86AB;
+  background: #fff;
+  color: #2E86AB;
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.limiteBtn:hover { background: #2E86AB; color: #fff; }
+.limiteVal {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #1F4E79;
+  min-width: 48px;
+  text-align: center;
+}
+
+/* ── Lista premios ── */
+.premiosList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.premioItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1.5px solid #e8f4fd;
+  border-radius: 12px;
+  background: #f7fbff;
+  transition: opacity 0.2s, border-color 0.2s;
+  animation: slideIn 0.3s ease both;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.premioInactivo { opacity: 0.45; background: #fafafa; border-color: #eee; }
+.ordenBadge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #9E9E9E;
+  min-width: 16px;
+}
+.premioEmoji { font-size: 1.4rem; }
+.premioNombre { flex: 1; font-weight: 600; font-size: 0.9rem; color: #333; }
+.premioActions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+
+.toggleSmall {
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1.5px solid #e0e0e0;
+  background: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9E9E9E;
+  transition: all 0.15s;
+}
+.toggleSmallOn {
+  background: #e6f9f0;
+  border-color: #a8e6c8;
+  color: #1a9e5e;
+}
+.deleteBtn {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #fff0f0;
+  color: #e74c3c;
+  font-size: 0.75rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.deleteBtn:hover { background: #ffd5d5; }
+
+/* ── Agregar premio ── */
+.addPremio {
+  border-top: 1px solid #f0f4f8;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.addTitle { font-size: 0.85rem; font-weight: 700; color: #1F4E79; }
+.addRow { display: flex; gap: 8px; align-items: center; }
+.emojiInput {
+  width: 52px;
+  padding: 10px 8px;
+  border: 2px solid #e8f4fd;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  background: #f7fbff;
+  outline: none;
+}
+.emojiInput:focus { border-color: #2E86AB; }
+.textInput {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e8f4fd;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  background: #f7fbff;
+  color: #333;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.textInput:focus { border-color: #2E86AB; background: #fff; }
+.textInput::placeholder { color: #bcc8d4; }
+.addBtn {
+  padding: 10px 16px;
+  background: #2E86AB;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.addBtn:hover { background: #256f90; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .root { padding: 24px 20px; }
+}
