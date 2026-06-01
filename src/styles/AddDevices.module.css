@@ -1,0 +1,134 @@
+.form {
+  width: 100%;
+  max-width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  margin: 3rem auto;
+  padding: 2rem;
+
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+
+  font-family: var(--font-body);
+}
+
+.form h2 {
+  text-align: center;
+  font-family: var(--font-display);
+  color: var(--color-blue-dark);
+  font-size: 1.8rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form input,
+.form select {
+  width: 100%;
+
+  padding: 0.9rem 1rem;
+
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+
+  background: var(--bg-secondary);
+
+  font-size: 1rem;
+
+  transition: var(--transition);
+}
+
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: var(--color-blue-light);
+  box-shadow: 0 0 0 4px rgba(79, 195, 247, 0.2);
+}
+
+.form button {
+  margin-top: 0.5rem;
+
+  padding: 1rem;
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  background: var(--btn-primary);
+  color: var(--color-white);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  transition: var(--transition);
+}
+
+.form button:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-2px);
+}
+
+.form button:active {
+  transform: translateY(0);
+}
+
+.petBox {
+  min-height: 56px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+
+  padding: 12px;
+
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-md);
+
+  background: var(--bg-primary);
+
+  transition: var(--transition);
+}
+
+.petBox:hover {
+  border-color: var(--color-blue-light);
+}
+
+.petTag {
+  padding: 6px 12px;
+
+  background: rgba(46, 134, 171, 0.12);
+  color: var(--color-blue-dark);
+
+  border-radius: var(--radius-full);
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #dcdfe4;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: white;
+    outline: none;
+    transition: 0.2s;
+}
+
+.select:focus {
+    border-color: #4FC3F7;
+    box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.15);
+}

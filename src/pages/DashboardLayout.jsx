@@ -1,7 +1,7 @@
 // layouts/DashboardLayout.jsx
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import styles from "./DashboardLayout.module.css";
+import styles from "../styles/DashboardLayout.module.css";
 import Logo from "../assets/Logo_SmartPetHome.png";
 import { useState } from "react";
 

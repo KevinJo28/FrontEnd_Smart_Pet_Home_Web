@@ -9,6 +9,7 @@ import DashboardLayout from "../pages/DashboardLayout";
 import Settings from "../pages/Settings";
 import Reports from "../pages/Reports";
 import Rewards from "../pages/Rewards";
+import AddDevices from "../pages/AddDevices";
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -40,6 +41,7 @@ export default function AppRouter() {
           <Route path="/ajustes" element={<Settings />} />
           <Route path="/reportes" element={<Reports />} />
           <Route path="/Recompensas" element={<Rewards />} />
+          <Route path="/Agregar_Dispositivo" element={<AddDevices />} />
         </Route>
       </Routes>
     </BrowserRouter>

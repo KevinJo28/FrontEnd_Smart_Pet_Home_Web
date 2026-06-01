@@ -43,9 +43,11 @@
 /* ── Grid layout ── */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 0.5fr;
   gap: 20px;
-  align-items: start;
+  align-items: center;
+  justify-content: center;
+  
 }
 
 .colLeft, .colRight { display: flex; flex-direction: column; gap: 20px; }

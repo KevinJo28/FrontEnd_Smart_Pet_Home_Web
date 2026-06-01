@@ -1,0 +1,114 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-family: var(--font-display);
+  color: var(--color-blue-dark);
+}
+
+.addButton {
+  border: none;
+  border-radius: var(--radius-md);
+
+  padding: 12px 20px;
+
+  background: var(--accent);
+  color: white;
+
+  font-weight: 700;
+  font-size: 1rem;
+
+  transition: var(--transition);
+}
+
+.addButton:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.petGrid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+  gap: 24px;
+}
+
+.petCard {
+  background: white;
+
+  border-radius: var(--radius-lg);
+
+  padding: 24px;
+
+  box-shadow: var(--shadow-md);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: var(--transition);
+}
+
+.petCard:hover {
+  transform: translateY(-4px);
+}
+
+.petImage {
+  width: 120px;
+  height: 120px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 4px solid var(--color-blue-light);
+
+  margin-bottom: 16px;
+}
+
+.petInfo {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.petInfo h3 {
+  color: var(--color-blue-dark);
+  margin-bottom: 4px;
+}
+
+.petInfo p {
+  color: var(--text-primary);
+}
+
+.petInfo span {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.viewButton {
+  width: 100%;
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  padding: 12px;
+
+  background: var(--bg-secondary);
+
+  color: var(--color-blue-mid);
+
+  font-weight: 700;
+
+  transition: var(--transition);
+}
+
+.viewButton:hover {
+  background: var(--color-blue-light);
+  color: white;
+}

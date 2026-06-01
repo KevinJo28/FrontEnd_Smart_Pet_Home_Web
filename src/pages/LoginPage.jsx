@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
-import styles from "./LoginPage.module.css";
+import styles from "../styles/LoginPage.module.css";
 import Logo from "../assets/Logo_SmartPetHome.png";
 import { useNavigate } from "react-router-dom";
 
@@ -14,30 +14,28 @@ const LogoPlaceholder = () => (
 );
 
 
-
-
-
-
-
 export default function LoginPage() {
   const { login, error, setError } = useAuth();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    // Tiny delay for UX feel
-    await new Promise((r) => setTimeout(r, 500));
-    const succes = login(username, password);
-    if(succes) navigate("/dashboard");
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setLoading(true);
 
-    setLoading(false);
-  };
+      try {
+        const success = await login(email, password);
 
+        if (success) {
+          navigate("/dashboard");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
   return (
     <div className={styles.root}>
       {/* Decorative background blobs */}
@@ -57,17 +55,17 @@ export default function LoginPage() {
           )}
 
           <div className={styles.field}>
-            <label htmlFor="username" className={styles.label}>Usuario</label>
+            <label htmlFor="email" className={styles.label}>Correo</label>
             <div className={styles.inputWrap}>
               <span className={styles.inputIcon}>🐶</span>
               <input
                 id="username"
                 type="text"
                 className={styles.input}
-                placeholder="Tu usuario"
-                value={username}
-                autoComplete="username"
-                onChange={(e) => { setUsername(e.target.value); setError(""); }}
+                placeholder="Tu email"
+                value={email}
+                autoComplete="email"
+                onChange={(e) => { setEmail(e.target.value); setError(""); }}
               />
             </div>
           </div>
@@ -91,7 +89,7 @@ export default function LoginPage() {
           <button
             type="submit"
             className={styles.btn}
-            disabled={loading || !username || !password}
+            disabled={loading || !email || !password}
           >
             {loading ? (
               <span className={styles.spinner} />
@@ -102,7 +100,7 @@ export default function LoginPage() {
         </form>
 
         <p className={styles.hint}>
-          Demo: <strong>admin</strong> · <strong>1234</strong>
+          Demo: <strong>kevinabarca1224@gmail.com</strong> ----- <strong>123</strong>
         </p>
       </div>
 

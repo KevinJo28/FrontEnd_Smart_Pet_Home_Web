@@ -1,5 +1,5 @@
 import { useAuth } from "../hooks/useAuth";
-import styles from "./DashboardPage.module.css";
+import styles from "../styles/DashboardPage.module.css";
 import Food from "../assets/pet-food.png";
 import Rewards from "../assets/reward.png";
 import Water from "../assets/dispenser.png";
@@ -20,8 +20,11 @@ const DEVICES = [
   { name: "Recompensas",  breed: "Labrador",  age: "1 año",  status: "En uso", emoji: Rewards},
 ];
 
+
+
 export default function DashboardPage() {
   const { user } = useAuth();
+  console.log("Usuario:", user);
     const navigate = useNavigate();
 
   return (
@@ -33,10 +36,10 @@ export default function DashboardPage() {
         <header className={styles.header}>
           <div>
             <p className={styles.greeting}>¡Bienvenido de vuelta!</p>
-            <h1 className={styles.userName}>{user?.name} </h1>
+            <h1 className={styles.userName}>{user?.username} </h1>
           </div>
           <div className={styles.avatar}>
-            {user?.name?.[0]?.toUpperCase() ?? "U"}
+            {user?.username?.[0]?.toUpperCase() ?? "U"}
           </div>
         </header>
 
@@ -57,7 +60,7 @@ export default function DashboardPage() {
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Tus dispositivos</h2>
-            <button className={styles.addBtn}>+ Agregar</button>
+            <button className={styles.addBtn} onClick={()=>{navigate("/Agregar_Dispositivo")}}>+ Agregar</button>
           </div>
           <div className={styles.petsGrid}>
             {DEVICES.map((pet) => (

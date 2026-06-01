@@ -1,5 +1,5 @@
 
-import styles from "./Settings.module.css";
+import styles from "../styles/Settings.module.css";
 const Settings = () => {
   return (
     <div className={styles.root}>

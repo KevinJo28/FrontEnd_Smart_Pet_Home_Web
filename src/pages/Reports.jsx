@@ -1,4 +1,4 @@
-import styles from "./Reports.module.css";
+import styles from "../styles/Reports.module.css";
 
 const Reports = () => {
   return (
