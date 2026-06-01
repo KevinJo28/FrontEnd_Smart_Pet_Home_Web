@@ -40,7 +40,7 @@ export default function AppRouter() {
           <Route path="/mascotas" element={<MyPets />} />
           <Route path="/ajustes" element={<Settings />} />
           <Route path="/reportes" element={<Reports />} />
-          <Route path="/Recompensas" element={<Rewards />} />
+          <Route path="/reward_dispenser" element={<Rewards />} />
           <Route path="/Agregar_Dispositivo" element={<AddDevices />} />
         </Route>
       </Routes>

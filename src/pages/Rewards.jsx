@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/Rewards.module.css";
-import { sendCommand } from "../api/apiCall";
+import { sendCommand } from "../api/apiRewards";
 
 
 export default function PremiosPage() {

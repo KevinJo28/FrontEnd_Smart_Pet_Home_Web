@@ -1,11 +1,21 @@
+import { createDevice } from "../api/apiCreateDevice";
 export const handleAdd = async (e, deviceCode, deviceName, deviceType) => {
-    e.preventDefault();
+  
+  e.preventDefault();
 
-    console.log({
-        deviceCode,
-        deviceName,
-        deviceType
+  try {
+    const device = await createDevice({
+      device_code: deviceCode,
+      device_name: deviceName,
+      device_type: deviceType,
     });
 
-    // fetch al backend
+    console.log("Dispositivo creado:", device);
+
+  } catch (error) {
+    console.error(error);
+  }
+  
+
+  
 };
