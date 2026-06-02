@@ -1,0 +1,93 @@
+.root {
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.title {
+  margin-top: 0.5rem;
+  font-size: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cardTitle {
+  margin-bottom: 1.5rem;
+}
+
+.estadoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.estado {
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.abierta {
+  background: #d4f8d4;
+  color: #197a19;
+}
+
+.cerrada {
+  background: #ffe0e0;
+  color: #b21f1f;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btnAbrir,
+.btnCerrar {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btnAbrir {
+  background: #22c55e;
+  color: white;
+}
+
+.btnAbrir:hover {
+  transform: translateY(-2px);
+}
+
+.btnCerrar {
+  background: #ef4444;
+  color: white;
+}
+
+.btnCerrar:hover {
+  transform: translateY(-2px);
+}
+
+.btnAbrir:disabled,
+.btnCerrar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}

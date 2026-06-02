@@ -26,6 +26,14 @@
   font-weight: 900;
   color: #1F4E79;
 }
+
+.selectTiempo {
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
 .badge {
   display: flex;
   align-items: center;

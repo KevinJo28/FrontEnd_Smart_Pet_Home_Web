@@ -10,6 +10,7 @@ import Settings from "../pages/Settings";
 import Reports from "../pages/Reports";
 import Rewards from "../pages/Rewards";
 import AddDevices from "../pages/AddDevices";
+import Door from "../pages/Door";
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -42,6 +43,7 @@ export default function AppRouter() {
           <Route path="/reportes" element={<Reports />} />
           <Route path="/reward_dispenser" element={<Rewards />} />
           <Route path="/Agregar_Dispositivo" element={<AddDevices />} />
+          <Route path="/smart_door" element={<Door />} />
         </Route>
       </Routes>
     </BrowserRouter>

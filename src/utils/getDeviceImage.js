@@ -1,14 +1,16 @@
 import Food from "../assets/pet-food.png";
 import Rewards from "../assets/reward.png";
 import Water from "../assets/dispenser.png";
+import Door from "../assets/door.png";
+import BallLauncher from "../assets/ball.png";
 
 export const getDeviceImage = (type) => {
   const images = {
     food_dispenser: Food,
     water_dispenser: Water,
     reward_dispenser: Rewards,
-    // door_controller: Door,
-    // ball_launcher: BallLauncher,
+    smart_door: Door,
+    ball_launcher: BallLauncher,
     // activity_monitor: Activity,
     // temperature_sensor: Temperature,
     // pet_communication: Communication,
