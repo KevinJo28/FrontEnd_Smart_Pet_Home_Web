@@ -1,8 +1,6 @@
 import { createDevice } from "../api/apiCreateDevice";
 export const handleAdd = async (e, deviceCode, deviceName, deviceType) => {
   
-  e.preventDefault();
-
   try {
     const device = await createDevice({
       device_code: deviceCode,

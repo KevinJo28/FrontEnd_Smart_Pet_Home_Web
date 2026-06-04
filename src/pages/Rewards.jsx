@@ -1,21 +1,32 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/Rewards.module.css";
 import { sendCommand } from "../api/apiRewards";
+import {useConfig} from "../hooks/useConfig"
+import { setConfigReward } from "../hooks/updateConfigReward";
+
 
 export default function PremiosPage() {
-  const [limiteDiario, setLimiteDiario] = useState(5);
-  const [usadosHoy, setUsadosHoy] = useState(0);
+    const {
+    limiteDiario,
+    usadosHoy,
+    limiteTiempo,
+    unidadTiempo,
+    setUsadosHoy,
+    setLimiteDiario,
+    setLimiteTiempo,
+    setUnidadTiempo,
+    loaded
+  } = useConfig();
   const [lanzando, setLanzando] = useState(false);
   const [ultimoPremio, setUltimoPremio] = useState(null);
   const [editandoLimite, setEditandoLimite] = useState(false);
-
-  // NUEVO
-  const [limiteTiempo, setLimiteTiempo] = useState(30); // minutos
-  const [unidadTiempo, setUnidadTiempo] = useState("minutos");
-  const [ultimoUso, setUltimoUso] = useState(null);
-
   const restantes = limiteDiario - usadosHoy;
-  const sinUsos = restantes <= 0;
+
+  useEffect(() => {
+    if (loaded) {
+      setConfigReward(limiteDiario, usadosHoy, limiteTiempo, unidadTiempo)
+    }  
+  },[loaded, limiteDiario, usadosHoy, limiteTiempo, unidadTiempo]);
 
   useEffect(() => {
     if (!ultimoPremio) return;
@@ -24,77 +35,15 @@ export default function PremiosPage() {
 
     return () => clearTimeout(timer);
   }, [ultimoPremio]);
-
-  const getTiempoMs = () => {
-    switch (unidadTiempo) {
-      case "segundos":
-        return limiteTiempo * 1000;
-
-      case "horas":
-        return limiteTiempo * 60 * 60 * 1000;
-
-      default:
-        return limiteTiempo * 60 * 1000;
-    }
-  };
-
-  const puedeUsarPorTiempo = () => {
-    if (!ultimoUso) return true;
-
-    const ahora = Date.now();
-    const diferencia = ahora - ultimoUso;
-
-    return diferencia >= getTiempoMs();
-  };
-
-  const tiempoRestante = () => {
-    if (!ultimoUso) return 0;
-
-    const ahora = Date.now();
-    const diferencia = ahora - ultimoUso;
-
-    const restante = getTiempoMs() - diferencia;
-
-    if (restante <= 0) return 0;
-
-    switch (unidadTiempo) {
-      case "segundos":
-        return Math.ceil(restante / 1000);
-
-      case "horas":
-        return Math.ceil(restante / (60 * 60 * 1000));
-
-      default:
-        return Math.ceil(restante / (60 * 1000));
-    }
-  };
-  // NUEVO
-  const bloqueadoPorTiempo = !puedeUsarPorTiempo();
-
   // ── Soltar premio ──────────────────────────────────────────
   const soltarPremio = async () => {
-    if (sinUsos || bloqueadoPorTiempo) return;
-
     setLanzando(true);
-    setUltimoPremio(null);
-
     await sendCommand(
       "rewards",
       "dispense_reward",
-      {
-        tiempo: limiteTiempo,
-        unidad: unidadTiempo,
-        dia: restantes,
-      }
     );
-
-    let elegido = true;
-
-    setUltimoUso(Date.now()); // NUEVO
-    setUltimoPremio(elegido);
-    setUsadosHoy((u) => u + 1);
-
     setLanzando(false);
+    setUsadosHoy(prev => prev + 1);
   };
 
   return (
@@ -140,32 +89,13 @@ export default function PremiosPage() {
               </div>
             )}
 
-            {bloqueadoPorTiempo && (
-              <div className={styles.resultadoBanner}>
-                <div>
-                  <p className={styles.resultadoLabel}>
-                    Disponible en {tiempoRestante()} {unidadTiempo}
-                  </p>
-                </div>
-              </div>
-            )}
-
             <button
-              className={`${styles.btnSoltar} ${
-                sinUsos || bloqueadoPorTiempo ? styles.btnDisabled : ""
-              }`}
+              className={`${styles.btnSoltar}`}
               onClick={soltarPremio}
-              disabled={sinUsos || bloqueadoPorTiempo || lanzando}
+              disabled={restantes <= 0}
             >
-              {lanzando ? (
-                <span className={styles.spinner} />
-              ) : sinUsos ? (
-                "⛔ Límite diario alcanzado"
-              ) : bloqueadoPorTiempo ? (
-                `⏳ Espera ${tiempoRestante()} ${unidadTiempo}`
-              ) : (
-                "Soltar Premio"
-              )}
+              
+                Soltar Premio
             </button>
           </div>
 
@@ -253,11 +183,7 @@ export default function PremiosPage() {
               </select>
             </div>
 
-            {bloqueadoPorTiempo && (
-              <p className={styles.tiempoRestante}>
-                Disponible en {tiempoRestante()} {unidadTiempo}
-              </p>
-            )}
+           
           </div>
         </div>
       </div>

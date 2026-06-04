@@ -30,7 +30,7 @@ export default function Door() {
         "close"
       );
 
-      setEstado("cerrada");
+      setEstado("cerrada")
     } finally {
       setLoading(false);
     }
