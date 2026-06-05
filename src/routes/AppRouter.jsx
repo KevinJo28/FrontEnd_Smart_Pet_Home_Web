@@ -15,6 +15,8 @@ import Door from "../pages/Door";
 function PrivateRoute({ children }) {
   const { user } = useAuth();
   console.log(user);
+  console.log("USER:", user);
+  console.log("TYPE:", typeof user);
   return user ? children : <Navigate to="/" replace />;
 }
 

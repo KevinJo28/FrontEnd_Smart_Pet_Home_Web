@@ -18,7 +18,7 @@ export function ConfigProvider({ children }) {
   }, []);
 
   useEffect(() => {
-      const client = mqtt.connect("ws://10.207.8.102:9001");
+      const client = mqtt.connect("ws://10.161.255.102:9001");
     
       client.on("connect", () => {
         console.log("MQTT conectado");
