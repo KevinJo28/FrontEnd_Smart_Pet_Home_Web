@@ -88,6 +88,7 @@ export default function Door() {
               : "Cerrar Puerta"}
           </button>
         </div>
+
       </div>
     </div>
   );
