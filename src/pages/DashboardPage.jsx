@@ -5,11 +5,6 @@ import { useEffect, useState } from "react";
 import { getDevices } from "../api/apiGetDevices";
 import { getDeviceImage } from "../utils/getDeviceImage";
 
-const STATS = [
-  { icon: "🐶", label: "Mascotas", value: "2", color: "#2E86AB" },
-  { icon: "💻", label: "Dispositivos", value: "2", color: "#4FC3F7" },
-];
-
 // const DEVICES = [
 //   {
 //     name: "Alimentación",
@@ -38,6 +33,22 @@ export default function DashboardPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [devices, setDevices] = useState([]);
+
+  const STATS = [
+    {
+      icon: "🐶",
+      label: "Mascotas",
+      value: "2",
+      color: "#2E86AB",
+    },
+    {
+      icon: "💻",
+      label: "Dispositivos",
+      value: devices.length,
+      color: "#4FC3F7",
+    },
+  ];
+
   useEffect(() => {
   const loadDevices = async () => {
     try {
@@ -97,43 +108,62 @@ console.log(devices)
               + Agregar
             </button>
           </div>
-          <div className={styles.petsGrid}>
-            {devices.map((device) => (
-                <div key={device.id} className={styles.petCard}>
-                  <div className={styles.petEmoji}>
-                    <img
-                      src={getDeviceImage(device.device_type)}
-                      alt={device.device_name}
-                    />
-                  </div>
+          {devices.length === 0 ? (
+      <div className={styles.emptyDeviceBox}>
+        <div className={styles.plusCircle}>+</div>
 
-                  <div className={styles.petInfo}>
-                    <h3 className={styles.petName}>
-                      {device.device_name}
-                    </h3>
+          <h3>¿Deseas agregar un dispositivo?</h3>
 
-                    <p className={styles.petBreed}>
-                      Código: {device.device_code}
-                    </p>
+        <p>Agrega tu primer dispositivo para comenzar a monitorear a tu mascota.</p>
 
-                    <p className={styles.petBreed}>
-                      Tipo: {device.device_type}
-                    </p>
+          <button
+            className={styles.emptyAddBtn}
+            onClick={() => {
+              navigate("/Agregar_Dispositivo");
+            }}
+          >
+            Agregar dispositivo
+          </button>
+        </div>
+        ) : (
+        <div className={styles.petsGrid}>
+          {devices.map((device) => (
+            <div key={device.id} className={styles.petCard}>
+              <div className={styles.petEmoji}>
+                <img
+                  src={getDeviceImage(device.device_type)}
+                  alt={device.device_name}
+                />
+              </div>
 
-                    <span className={styles.petBadge}>
-                      {device.status}
-                    </span>
-                  </div>
+              <div className={styles.petInfo}>
+                <h3 className={styles.petName}>
+                  {device.device_name}
+                </h3>
 
-                  <button
-                    className={styles.petBtn}
-                    onClick={() => navigate(`/${device.device_type}`)}
-                  >
-                    Ver dispositivo →
-                  </button>
-                </div>
-              ))}
-          </div>
+                <p className={styles.petBreed}>
+                  Código: {device.device_code}
+                </p>
+
+                <p className={styles.petBreed}>
+                  Tipo: {device.device_type}
+                </p>
+
+                <span className={styles.petBadge}>
+                  {device.status}
+                </span>
+              </div>
+
+              <button
+                className={styles.petBtn}
+                onClick={() => navigate(`/${device.device_type}`)}
+              >
+                Ver dispositivo →
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
         </section>
 
         {/* Quick actions */}

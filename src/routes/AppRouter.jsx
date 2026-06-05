@@ -11,6 +11,8 @@ import Reports from "../pages/Reports";
 import Rewards from "../pages/Rewards";
 import AddDevices from "../pages/AddDevices";
 import Door from "../pages/Door";
+import Ball from "../pages/Ball";
+import Agua from "../pages/Agua";
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -46,6 +48,9 @@ export default function AppRouter() {
           <Route path="/reward_dispenser" element={<Rewards />} />
           <Route path="/Agregar_Dispositivo" element={<AddDevices />} />
           <Route path="/smart_door" element={<Door />} />
+          <Route path="/ball_launcher" element={<Ball />} />
+          <Route path="/water_dispenser" element={<Agua />} />
+        
         </Route>
       </Routes>
     </BrowserRouter>

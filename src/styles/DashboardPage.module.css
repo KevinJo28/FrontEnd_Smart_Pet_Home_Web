@@ -209,3 +209,54 @@
   .main { padding: 24px 20px; }
   .statsGrid { grid-template-columns: repeat(2, 1fr); }
 }
+
+.emptyDeviceBox {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  min-height: 230px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.plusCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ff7a00;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.emptyDeviceBox h3 {
+  color: #1f4e79;
+  margin-bottom: 0.5rem;
+}
+
+.emptyDeviceBox p {
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.emptyAddBtn {
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  background: #ff7a00;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
