@@ -1,16 +1,19 @@
 import { useState } from "react";
 import styles from "../styles/Ball.module.css";
+import { sendCommand } from "../api/apiRewards";
 
 export default function Ball() {
   const [estadoLanzamiento, setEstadoLanzamiento] = useState("lista");
 
-  const lanzarPelota = () => {
+  const lanzarPelota = async () => {
     setEstadoLanzamiento("lanzando");
-
-    setTimeout(() => {
-      setEstadoLanzamiento("lista");
-    }, 1000);
+    await sendCommand(
+      "rewards",
+      "dispense_reward",
+    );
+     setEstadoLanzamiento("lista");
   };
+
 
   return (
     <div className={styles.root}>
