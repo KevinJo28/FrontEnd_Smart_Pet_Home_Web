@@ -5,6 +5,7 @@ import { sendCommand } from "../api/apiRewards";
 export default function Door() {
   const [loading, setLoading] = useState(false);
   const [estado, setEstado] = useState("cerrada");
+  const [dateTime, setDateTime] = useState("");
 
   const abrirPuerta = async () => {
     try {
@@ -52,7 +53,7 @@ export default function Door() {
 
       <div className={styles.card}>
         <h2 className={styles.cardTitle}>
-          Estado Actual
+          Apertura y Cierre Manual
         </h2>
 
         <div className={styles.estadoContainer}>
@@ -88,6 +89,34 @@ export default function Door() {
               : "Cerrar Puerta"}
           </button>
         </div>
+        
+
+      </div>
+      {/*Card Horarios*/}
+      <div className={styles.card}>
+        <h2 className={styles.cardTitle}>
+          Apertura y Cierre Automático 
+        </h2>
+
+        <div className={styles.estadoContainer2}>
+          <section className={styles.dates}>
+            <label>Apertura</label>
+            <input
+            value={dateTime}
+              type="datetime-local"
+              onChange={(e) => setDateTime(e.target.value)}
+            />
+          </section>
+          <section className={styles.dates}>
+            <label>Cierre</label>
+            <input
+            value={dateTime}
+              type="datetime-local"
+              onChange={(e) => setDateTime(e.target.value)}
+            />
+          </section >
+        </div>
+        
 
       </div>
     </div>

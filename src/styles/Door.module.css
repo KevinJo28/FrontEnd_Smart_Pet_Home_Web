@@ -1,5 +1,6 @@
 .root {
   padding: 2rem;
+  
 }
 
 .header {
@@ -21,6 +22,7 @@
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 25px;
 }
 
 .cardTitle {
@@ -32,6 +34,24 @@
   justify-content: center;
   margin-bottom: 2rem;
 }
+
+
+
+.estadoContainer2{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin: 10px;
+  gap: 10px;
+}
+
+.dates{
+  display: flex;
+  flex-direction: column;
+  margin: 35px;
+  gap: 10px;
+}
+
 
 .estado {
   padding: 0.8rem 1.5rem;
@@ -90,4 +110,25 @@
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+}
+
+label{
+  font-size: 20px;
+  font-weight: 500;
+  
+}
+
+input[type="datetime-local"]{
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  padding: 10px;
+  border: 2px solid var( --color-blue-dark);
+}
+
+input[type="datetime-local"]:hover{
+  transform: translateY(-5px);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2) ;
+  transition: var(--transition);
+ 
 }
