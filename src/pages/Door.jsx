@@ -1,11 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Door.module.css";
 import { sendCommand } from "../api/apiRewards";
+import { getDoorConfig } from "../utils/getDoorConfig";
+import { CreateConfig1 } from "../utils/createDoorConfig";
 
 export default function Door() {
   const [loading, setLoading] = useState(false);
   const [estado, setEstado] = useState("cerrada");
-  const [dateTime, setDateTime] = useState("");
+  const [open_time, setOpenTime] = useState();
+  const [close_time, setCloseTime] = useState();
+  useEffect(() => {
+    const loadConfig = async () => {
+      try {
+        const data = await getDoorConfig();
+
+        if (!data) return;
+
+        setOpenTime(data.open_time || "");
+        setCloseTime(data.close_time || "");
+
+      } catch {
+        console.log("No existe configuración todavía");
+      }
+    };
+
+    loadConfig();
+  }, []);
+
+  const guardarHorario = async () => {
+    await CreateConfig1({
+      open_time,
+      close_time
+    });
+  };
 
   const abrirPuerta = async () => {
     try {
@@ -102,20 +129,27 @@ export default function Door() {
           <section className={styles.dates}>
             <label>Apertura</label>
             <input
-            value={dateTime}
-              type="datetime-local"
-              onChange={(e) => setDateTime(e.target.value)}
+            value={open_time}
+              type="time"
+              onChange={(e) => setOpenTime(e.target.value)}
             />
           </section>
           <section className={styles.dates}>
             <label>Cierre</label>
             <input
-            value={dateTime}
-              type="datetime-local"
-              onChange={(e) => setDateTime(e.target.value)}
+            value={close_time}
+              type="time"
+              onChange={(e) => setCloseTime(e.target.value)}
             />
           </section >
         </div>
+        <button
+            className={styles.btnGuardar}
+            onClick={guardarHorario}
+          >
+                        
+             Guardar Horario
+          </button>
         
 
       </div>

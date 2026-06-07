@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Rewards.module.css";
 import { sendCommand } from "../api/apiRewards";
 import {useConfig} from "../hooks/useConfig"
-import { setConfigReward } from "../hooks/updateConfigReward";
+import { setConfigReward } from "../utils/updateConfigReward";
 
 
 export default function PremiosPage() {

@@ -1,6 +1,6 @@
 import styles from "../styles/Structure.module.css";
 import styles2 from "../styles/AddDevices.module.css";
-import { handleAdd } from "../hooks/handleAddDevices";
+import { handleAdd } from "../utils/handleAddDevices";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

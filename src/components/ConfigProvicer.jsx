@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { configContext } from "../context/configContext.js";
 import PropTypes from "prop-types";
-import { setConfigReward } from "../hooks/setConfigReward.js";
+import { setConfigReward } from "../utils/setConfigReward.js";
 import { getConfig } from "../api/apiGetConfig.js";
 import mqtt from "mqtt";
 
@@ -18,43 +18,39 @@ export function ConfigProvider({ children }) {
   }, []);
 
   useEffect(() => {
-      const client = mqtt.connect("ws://10.161.255.102:9001");
-    
-      client.on("connect", () => {
-        console.log("MQTT conectado");
-        client.subscribe("pet/rewards/event");
-      });
-    
-      client.on("message", (topic, message) => {
-        try {
-          const data = JSON.parse(message.toString());
-    
-          if (
-            topic === "pet/rewards/event" &&
-            data.action === "reward_used"
-          ) {
-            setUsadosHoy(prev => prev + 1);
-          }
-        } catch (error) {
-          console.error("Error procesando MQTT:", error);
+    const client = mqtt.connect("ws://10.161.255.102:9001");
+
+    client.on("connect", () => {
+      console.log("MQTT conectado");
+      client.subscribe("pet/rewards/event");
+    });
+
+    client.on("message", (topic, message) => {
+      try {
+        const data = JSON.parse(message.toString());
+
+        if (topic === "pet/rewards/event" && data.action === "reward_used") {
+          setUsadosHoy((prev) => prev + 1);
         }
-      });
-    
-      return () => {
-        client.end();
-      };
-    }, [])
+      } catch (error) {
+        console.error("Error procesando MQTT:", error);
+      }
+    });
+
+    return () => {
+      client.end();
+    };
+  }, []);
 
   const loadConfig = async () => {
     try {
       const config = await getConfig();
-      console.log(config)
+      console.log(config);
       setEnable(config.enabled);
       setLimiteDiario(config.daily_limit);
       setUsadosHoy(config.daily_use);
       setLimiteTiempo(config.wait_time);
       setUnidadTiempo(config.type_time);
-      
     } catch (error) {
       // No existe, la creamos
       const defaultConfig = {
@@ -66,7 +62,7 @@ export function ConfigProvider({ children }) {
       };
 
       const config = await setConfigReward(defaultConfig);
-      
+
       setEnable(config.enabled);
       setLimiteDiario(config.daily_limit);
       setUsadosHoy(config.daily_use);
@@ -74,7 +70,7 @@ export function ConfigProvider({ children }) {
       setUnidadTiempo(config.type_time);
       return error;
     }
-    setLoaded(true)
+    setLoaded(true);
   };
 
   return (
