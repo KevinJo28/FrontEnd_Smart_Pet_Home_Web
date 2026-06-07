@@ -1,27 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Agua.module.css";
+import { getWater } from "../utils/getWater";
+import mqtt from "mqtt";
 
 export default function Agua() {
  const [agua, setAgua] = useState(100);
-  const [estadoAgua, setEstadoAgua] = useState("Lista");
+ const [distance, setDistance] = useState(0);
 
-  const beberAgua = () => {
-    setEstadoAgua("Bebiendo...");
+  useEffect(() => {
+    const loadConfig = async () => {
+      try {
+        const data = await getWater();
 
-    setTimeout(() => {
-      setAgua((valorActual) => Math.max(valorActual - 15, 0));
-      setEstadoAgua("Lista");
-    }, 1000);
-  };
+        if (!data) return;
+        setAgua(data.water_level || 0);
+        setDistance(data.distance || 0);
 
-  const rellenarAgua = () => {
-    setEstadoAgua("Llenando...");
+      } catch {
+        console.log("No existe configuración todavía");
+      }
+    };
 
-    setTimeout(() => {
-      setAgua(100);
-      setEstadoAgua("Lista");
-    }, 1000);
-  };
+    loadConfig();
+    const client = mqtt.connect("ws://10.61.164.102:9001");
+
+    client.on("connect", () => {
+      console.log("MQTT conectado");
+      client.subscribe("pet/water/event");
+    });
+
+    client.on("message", (topic, message) => {
+      const data = JSON.parse(message.toString());
+
+      setAgua(data.water_level);
+      setDistance(data.distance);
+    });
+
+    return () => {
+      client.end();
+    };
+
+  }, []);
+
+
+
 
  return (
     <div className={styles.root}>
@@ -44,6 +66,7 @@ export default function Agua() {
           <div className={styles.estadoCaja}>
             Agua restante: {agua}%
           </div>
+          <p>Distancia: {distance} cm</p>
         </div>
 
         <div className={styles.barraContainer}>
@@ -51,17 +74,9 @@ export default function Agua() {
             className={styles.barraAgua}
             style={{ width: `${agua}%` }}
           ></div>
+          
         </div>
         
-        <div className={styles.botones}>
-          <button onClick={beberAgua}>
-            Simular consumo
-          </button>
-
-          <button onClick={rellenarAgua}>
-            Rellenar plato
-          </button>
-        </div>
       </div>
     </div>
   ); 
