@@ -11,7 +11,6 @@ export default function PremiosPage() {
     usadosHoy,
     limiteTiempo,
     unidadTiempo,
-    setUsadosHoy,
     setLimiteDiario,
     setLimiteTiempo,
     setUnidadTiempo,
@@ -43,7 +42,6 @@ export default function PremiosPage() {
       "dispense_reward",
     );
     setLanzando(false);
-    setUsadosHoy(prev => prev + 1);
   };
 
   return (

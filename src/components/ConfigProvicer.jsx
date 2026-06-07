@@ -18,7 +18,7 @@ export function ConfigProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    const client = mqtt.connect("ws://10.161.255.102:9001");
+    const client = mqtt.connect("ws://10.61.164.102:9001");
 
     client.on("connect", () => {
       console.log("MQTT conectado");
@@ -31,6 +31,11 @@ export function ConfigProvider({ children }) {
 
         if (topic === "pet/rewards/event" && data.action === "reward_used") {
           setUsadosHoy((prev) => prev + 1);
+        }else if (
+          topic === "pet/rewards/event" &&
+          data.action === "reset_daily_use"
+        ) {
+          setUsadosHoy(0);
         }
       } catch (error) {
         console.error("Error procesando MQTT:", error);
