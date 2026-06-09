@@ -5,6 +5,7 @@ import { setConfigReward } from "../utils/setConfigReward.js";
 import { getConfig } from "../api/apiGetConfig.js";
 import mqtt from "mqtt";
 
+
 export function ConfigProvider({ children }) {
   const [enable, setEnable] = useState(true);
   const [limiteDiario, setLimiteDiario] = useState(5);
@@ -12,13 +13,14 @@ export function ConfigProvider({ children }) {
   const [unidadTiempo, setUnidadTiempo] = useState("minutos");
   const [usadosHoy, setUsadosHoy] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const IP = import.meta.env.VITE_IP;
 
   useEffect(() => {
     loadConfig();
   }, []);
 
   useEffect(() => {
-    const client = mqtt.connect("ws://10.61.164.102:9001");
+    const client = mqtt.connect(`ws://${IP}:9001`);
 
     client.on("connect", () => {
       console.log("MQTT conectado");

@@ -3,9 +3,11 @@ import styles from "../styles/Agua.module.css";
 import { getWater } from "../utils/getWater";
 import mqtt from "mqtt";
 
+
 export default function Agua() {
  const [agua, setAgua] = useState(100);
  const [distance, setDistance] = useState(0);
+ const IP = import.meta.env.VITE_IP;
 
   useEffect(() => {
     const loadConfig = async () => {
@@ -22,7 +24,7 @@ export default function Agua() {
     };
 
     loadConfig();
-    const client = mqtt.connect("ws://10.61.164.102:9001");
+    const client = mqtt.connect(`ws://${IP}:9001`);
 
     client.on("connect", () => {
       console.log("MQTT conectado");
